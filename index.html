@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Consent Banner</title>
+    <style>
+        /* Basic styling for the cookie banner */
+        #cookieBanner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            display: none; /* Hidden by default */
+            z-index: 1000;
+        }
+        #cookieBanner button {
+            background-color: #f4a261;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #cookieBanner button:hover {
+            background-color: #e76f51;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cookie consent banner -->
+    <div id="cookieBanner">
+        We use cookies to improve your experience on our site. By continuing, you accept our <a href="#" style="color: #f4a261;">cookie policy</a>.
+        <button id="acceptCookies">Accept</button>
+    </div>
+
+    <script>
+        // Function to show the cookie banner
+        function showCookieBanner() {
+            const banner = document.getElementById('cookieBanner');
+            banner.style.display = 'block'; // Make the banner visible
+        }
+
+        // Function to handle cookie acceptance
+        function acceptCookies() {
+            // Save user's consent in localStorage
+            localStorage.setItem('cookieConsent', 'true');
+            // Hide the cookie banner
+            document.getElementById('cookieBanner').style.display = 'none';
+        }
+
+        // Check if the user has already accepted cookies
+        const cookieConsent = localStorage.getItem('cookieConsent');
+        if (!cookieConsent) {
+            // If no consent found, show the cookie banner
+            showCookieBanner();
+        }
+
+        // Attach click event listener to the "Accept" button
+        document.getElementById('acceptCookies').addEventListener('click', acceptCookies);
+    </script>
+</body>
+</html>
